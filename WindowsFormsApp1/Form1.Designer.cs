@@ -31,7 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tbPowt = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btGo = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.cbOper = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
@@ -61,14 +61,15 @@
             this.tbPowt.Size = new System.Drawing.Size(100, 20);
             this.tbPowt.TabIndex = 3;
             // 
-            // button1
+            // btGo
             // 
-            this.button1.Location = new System.Drawing.Point(16, 77);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Licz!";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btGo.Location = new System.Drawing.Point(16, 77);
+            this.btGo.Name = "btGo";
+            this.btGo.Size = new System.Drawing.Size(175, 23);
+            this.btGo.TabIndex = 4;
+            this.btGo.Text = "Licz!";
+            this.btGo.UseVisualStyleBackColor = true;
+            this.btGo.Click += new System.EventHandler(this.BtGo_Click);
             // 
             // textBox1
             // 
@@ -92,7 +93,7 @@
             this.ClientSize = new System.Drawing.Size(203, 450);
             this.Controls.Add(this.cbOper);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btGo);
             this.Controls.Add(this.tbPowt);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -108,7 +109,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbPowt;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btGo;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ComboBox cbOper;
     }

@@ -18,5 +18,10 @@ namespace WindowsFormsApp1
             //cbStatus.DataSource = Enum.GetValues(typeof(Status));
             cbOper.DataSource = Enum.GetValues(typeof(Count.Operations));
         }
+
+        private void BtGo_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Ok, guzik działa");
+        }
     }
 }
