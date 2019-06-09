@@ -15,6 +15,8 @@ namespace WindowsFormsApp1
         public Form1()
         {
             InitializeComponent();
+            //cbStatus.DataSource = Enum.GetValues(typeof(Status));
+            cbOper.DataSource = Enum.GetValues(typeof(Count.Operations));
         }
     }
 }
