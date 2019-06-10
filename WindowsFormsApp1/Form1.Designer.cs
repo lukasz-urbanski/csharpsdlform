@@ -32,8 +32,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tbPowt = new System.Windows.Forms.TextBox();
             this.btGo = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.cbOper = new System.Windows.Forms.ComboBox();
+            this.lvResult = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // label1
@@ -71,13 +71,6 @@
             this.btGo.UseVisualStyleBackColor = true;
             this.btGo.Click += new System.EventHandler(this.BtGo_Click);
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(16, 119);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(175, 20);
-            this.textBox1.TabIndex = 5;
-            // 
             // cbOper
             // 
             this.cbOper.FormattingEnabled = true;
@@ -86,13 +79,21 @@
             this.cbOper.Size = new System.Drawing.Size(100, 21);
             this.cbOper.TabIndex = 6;
             // 
+            // lvResult
+            // 
+            this.lvResult.Location = new System.Drawing.Point(13, 119);
+            this.lvResult.Name = "lvResult";
+            this.lvResult.Size = new System.Drawing.Size(178, 156);
+            this.lvResult.TabIndex = 7;
+            this.lvResult.UseCompatibleStateImageBehavior = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(203, 450);
+            this.Controls.Add(this.lvResult);
             this.Controls.Add(this.cbOper);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btGo);
             this.Controls.Add(this.tbPowt);
             this.Controls.Add(this.label2);
@@ -110,8 +111,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbPowt;
         private System.Windows.Forms.Button btGo;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ComboBox cbOper;
+        private System.Windows.Forms.ListView lvResult;
     }
 }
 
