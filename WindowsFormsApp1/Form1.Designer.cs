@@ -33,13 +33,13 @@
             this.tbPowt = new System.Windows.Forms.TextBox();
             this.btGo = new System.Windows.Forms.Button();
             this.cbOper = new System.Windows.Forms.ComboBox();
-            this.lvResult = new System.Windows.Forms.ListView();
+            this.lbResult = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(13, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 0;
@@ -48,7 +48,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 44);
+            this.label2.Location = new System.Drawing.Point(180, 40);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(68, 13);
             this.label2.TabIndex = 2;
@@ -56,16 +56,16 @@
             // 
             // tbPowt
             // 
-            this.tbPowt.Location = new System.Drawing.Point(91, 37);
+            this.tbPowt.Location = new System.Drawing.Point(254, 37);
             this.tbPowt.Name = "tbPowt";
             this.tbPowt.Size = new System.Drawing.Size(100, 20);
             this.tbPowt.TabIndex = 3;
             // 
             // btGo
             // 
-            this.btGo.Location = new System.Drawing.Point(16, 77);
+            this.btGo.Location = new System.Drawing.Point(16, 64);
             this.btGo.Name = "btGo";
-            this.btGo.Size = new System.Drawing.Size(175, 23);
+            this.btGo.Size = new System.Drawing.Size(338, 23);
             this.btGo.TabIndex = 4;
             this.btGo.Text = "Licz!";
             this.btGo.UseVisualStyleBackColor = true;
@@ -74,25 +74,25 @@
             // cbOper
             // 
             this.cbOper.FormattingEnabled = true;
-            this.cbOper.Location = new System.Drawing.Point(91, 4);
+            this.cbOper.Location = new System.Drawing.Point(74, 37);
             this.cbOper.Name = "cbOper";
             this.cbOper.Size = new System.Drawing.Size(100, 21);
             this.cbOper.TabIndex = 6;
             // 
-            // lvResult
+            // lbResult
             // 
-            this.lvResult.Location = new System.Drawing.Point(13, 119);
-            this.lvResult.Name = "lvResult";
-            this.lvResult.Size = new System.Drawing.Size(178, 156);
-            this.lvResult.TabIndex = 7;
-            this.lvResult.UseCompatibleStateImageBehavior = false;
+            this.lbResult.FormattingEnabled = true;
+            this.lbResult.Location = new System.Drawing.Point(16, 93);
+            this.lbResult.Name = "lbResult";
+            this.lbResult.Size = new System.Drawing.Size(338, 173);
+            this.lbResult.TabIndex = 7;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(203, 450);
-            this.Controls.Add(this.lvResult);
+            this.ClientSize = new System.Drawing.Size(367, 284);
+            this.Controls.Add(this.lbResult);
             this.Controls.Add(this.cbOper);
             this.Controls.Add(this.btGo);
             this.Controls.Add(this.tbPowt);
@@ -112,7 +112,7 @@
         private System.Windows.Forms.TextBox tbPowt;
         private System.Windows.Forms.Button btGo;
         private System.Windows.Forms.ComboBox cbOper;
-        private System.Windows.Forms.ListView lvResult;
+        private System.Windows.Forms.ListBox lbResult;
     }
 }
 

@@ -23,11 +23,25 @@ namespace WindowsFormsApp1
 
         private void BtGo_Click(object sender, EventArgs e)
         {
+            lbResult.Items.Clear();
+
             List<int> numbers = XmlReader.ReadXml();
          
             int counter = numbers.Count;
 
             var counts = new List<Count>();
+
+            int timesInt;
+
+            bool timesBool = int.TryParse(tbPowt.Text, out timesInt);
+            
+            Enum.TryParse<Count.Operations>(this.cbOper.SelectedValue.ToString(), out Count.Operations o);
+
+            if (!(timesBool) || !(timesInt>0))
+            {
+                lbResult.Items.Add("Musisz podać liczbę całkowitą większą od 0.");
+                return;
+            }
 
             for (int i = 0; i < counter; i+=2)
             {
@@ -36,9 +50,14 @@ namespace WindowsFormsApp1
 
             foreach(Count c in counts)
             {
-                lvResult.Items.Add(c.Add().ToString());
-                lvResult.Items.Add(String.Empty);
+                // lvResult.Items.Add(c.Add().ToString());
+                // lvResult.Items.Add(String.Empty);
+                foreach (String str in c.DealWithIt(c.GetA(), c.GetB(), o, timesInt))
+                {
+                    lbResult.Items.Add(str);                    
+                }
             }
+            lbResult.Items.Add("====================");
         }
     }
 }
