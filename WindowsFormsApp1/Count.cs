@@ -19,6 +19,14 @@ namespace WindowsFormsApp1
             Divide
         }
 
-
+        public Count(int a, int b)
+        {
+            this.A = a;
+            this.B = b;
+        }
+        public int Add()
+        {
+            return this.A + this.B;
+        }
     }
 }
