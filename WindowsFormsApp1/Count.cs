@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
+    /// <summary>
+    /// Klasa przechowująca zmienne oraz odowiedzialna za wykonanie działań matematycznych
+    /// </summary>
     class Count
     {
-        private int A { get; set; }
-        private int B { get; set; }
-        private int Repeat { get; set; }
+        #region Zmienne
+        private float A { get; set; }
+        private float B { get; set; }
         public enum Operations
         {
             dodawnie,
@@ -18,29 +21,36 @@ namespace WindowsFormsApp1
             mnożenie,
             dzielenie
         }
-
-        public int GetA()
-        {
-            return this.A;
-        }
-
-        public int GetB()
-        {
-            return this.B;
-        }
-
-
-        public Count(int a, int b)
+        #endregion
+        #region Metody
+        /// <summary>
+        /// Konstruktor klasy Count
+        /// </summary>
+        /// <param name="a">Wartość zmienneh A</param>
+        /// <param name="b">Wartość zmiennej B</param>
+        public Count(float a, float b)
         {
             this.A = a;
             this.B = b;
         }
-        public int Add()
+        // Pobranie zmiennej A i B
+        public float GetA()
         {
-            return this.A + this.B;
+            return this.A;
         }
-
-        public List<String> DealWithIt(int a, int b, Operations o, int t)
+        public float GetB()
+        {
+            return this.B;
+        }
+        /// <summary>
+        /// Wykonanie działań i zapisanie wyników do zmiennnej typu string
+        /// </summary>
+        /// <param name="a">1. liczba</param>
+        /// <param name="b">2. liczba</param>
+        /// <param name="o">Rodzaj działania</param>
+        /// <param name="t">Liczba potwórzeń</param>
+        /// <returns></returns>
+        public List<String> DealWithIt(float a, float b, Operations o, int t)
         {
             List<String> listResult = new List<String>();
             {
@@ -49,27 +59,32 @@ namespace WindowsFormsApp1
             }            
             for(int i = 0; i < t; i++)
             {
+                // Pętla switch przyjmująca za argumet rodziaj działania
+                // Nawiasy kwadratowe dodane dla czytelności
                 switch(o)
                 {
                     case Operations.dodawnie:
-                        listResult.Add($"{a} + {b} = {a + b}\n");
-                        b += a;
+                        listResult.Add($"[{a}] + [{b}] = [{a + b}]\n");
+                        b = a + b;
                         break;
                     case Operations.odejmmowanie:
-                        listResult.Add($"{a} - {b} = {a - b}\n");
-                        b -= a;
+                        listResult.Add($"[{a}] - [{b}] = [{a - b}]\n");
+                        b = a - b;
                         break;
                     case Operations.mnożenie:
-                        listResult.Add($"{a} * {b} = {a * b}\n");
-                        b *= a;
+                        listResult.Add($"[{a}] * [{b}] = [{a * b}]\n");
+                        b = a * b;
                         break;
                     case Operations.dzielenie:
-                        listResult.Add($"{a} / {b} = {a / b}\n");
-                        b /= a;
+                        listResult.Add(
+                            (String.Format("{0:0.##}", a) + " / " + (String.Format("{0:0.##}", b)) +
+                            " = " + (String.Format("{0:0.##}", a / b)) + "\n"));
+                        b = a / b;
                         break;
                 }                
             }
             return listResult;
         }
+        #endregion
     }
 }

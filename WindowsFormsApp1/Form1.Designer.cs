@@ -30,16 +30,18 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.tbPowt = new System.Windows.Forms.TextBox();
+            this.tbRepeats = new System.Windows.Forms.TextBox();
             this.btGo = new System.Windows.Forms.Button();
             this.cbOper = new System.Windows.Forms.ComboBox();
             this.lbResult = new System.Windows.Forms.ListBox();
+            this.btOpenFile = new System.Windows.Forms.Button();
+            this.tbFilename = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 40);
+            this.label1.Location = new System.Drawing.Point(16, 57);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 0;
@@ -48,24 +50,25 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(180, 40);
+            this.label2.Location = new System.Drawing.Point(181, 57);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(68, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Powtórzenia:";
             // 
-            // tbPowt
+            // tbRepeats
             // 
-            this.tbPowt.Location = new System.Drawing.Point(254, 37);
-            this.tbPowt.Name = "tbPowt";
-            this.tbPowt.Size = new System.Drawing.Size(100, 20);
-            this.tbPowt.TabIndex = 3;
+            this.tbRepeats.Location = new System.Drawing.Point(258, 54);
+            this.tbRepeats.Name = "tbRepeats";
+            this.tbRepeats.Size = new System.Drawing.Size(78, 20);
+            this.tbRepeats.TabIndex = 3;
             // 
             // btGo
             // 
-            this.btGo.Location = new System.Drawing.Point(16, 64);
+            this.btGo.Enabled = false;
+            this.btGo.Location = new System.Drawing.Point(16, 86);
             this.btGo.Name = "btGo";
-            this.btGo.Size = new System.Drawing.Size(338, 23);
+            this.btGo.Size = new System.Drawing.Size(320, 25);
             this.btGo.TabIndex = 4;
             this.btGo.Text = "Licz!";
             this.btGo.UseVisualStyleBackColor = true;
@@ -74,31 +77,53 @@
             // cbOper
             // 
             this.cbOper.FormattingEnabled = true;
-            this.cbOper.Location = new System.Drawing.Point(74, 37);
+            this.cbOper.Location = new System.Drawing.Point(77, 54);
             this.cbOper.Name = "cbOper";
-            this.cbOper.Size = new System.Drawing.Size(100, 21);
+            this.cbOper.Size = new System.Drawing.Size(91, 21);
             this.cbOper.TabIndex = 6;
             // 
             // lbResult
             // 
             this.lbResult.FormattingEnabled = true;
-            this.lbResult.Location = new System.Drawing.Point(16, 93);
+            this.lbResult.Location = new System.Drawing.Point(16, 127);
             this.lbResult.Name = "lbResult";
-            this.lbResult.Size = new System.Drawing.Size(338, 173);
+            this.lbResult.Size = new System.Drawing.Size(320, 160);
             this.lbResult.TabIndex = 7;
+            // 
+            // btOpenFile
+            // 
+            this.btOpenFile.Location = new System.Drawing.Point(16, 16);
+            this.btOpenFile.Name = "btOpenFile";
+            this.btOpenFile.Size = new System.Drawing.Size(152, 25);
+            this.btOpenFile.TabIndex = 8;
+            this.btOpenFile.Text = "Otwórz plik";
+            this.btOpenFile.UseVisualStyleBackColor = true;
+            this.btOpenFile.Click += new System.EventHandler(this.BtOpenFile_Click);
+            // 
+            // tbFilename
+            // 
+            this.tbFilename.Location = new System.Drawing.Point(184, 19);
+            this.tbFilename.Name = "tbFilename";
+            this.tbFilename.ReadOnly = true;
+            this.tbFilename.Size = new System.Drawing.Size(152, 20);
+            this.tbFilename.TabIndex = 9;
             // 
             // Form1
             // 
             this.AcceptButton = this.btGo;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(367, 284);
+            this.ClientSize = new System.Drawing.Size(349, 297);
+            this.Controls.Add(this.tbFilename);
+            this.Controls.Add(this.btOpenFile);
             this.Controls.Add(this.lbResult);
             this.Controls.Add(this.cbOper);
             this.Controls.Add(this.btGo);
-            this.Controls.Add(this.tbPowt);
+            this.Controls.Add(this.tbRepeats);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "XML Reader";
             this.ResumeLayout(false);
@@ -110,10 +135,12 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox tbPowt;
+        private System.Windows.Forms.TextBox tbRepeats;
         private System.Windows.Forms.Button btGo;
         private System.Windows.Forms.ComboBox cbOper;
         private System.Windows.Forms.ListBox lbResult;
+        private System.Windows.Forms.Button btOpenFile;
+        private System.Windows.Forms.TextBox tbFilename;
     }
 }
 
