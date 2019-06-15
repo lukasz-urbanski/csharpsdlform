@@ -6,21 +6,25 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
+    //do *not* add comments in Polish (or anything other than English. Always, but especially at work).
     /// <summary>
-    /// Klasa przechowująca zmienne oraz odowiedzialna za wykonanie działań matematycznych
+    /// Klasa przechowująca zmienne oraz odowiedzialna za wykonanie działań matematycznych 
     /// </summary>
     class Count
     {
-        #region Zmienne
+        //regions are rather yucky for hiding code :) That's a matter of preference though
+        #region Zmienne 
         private float A { get; set; }
         private float B { get; set; }
-        public enum Operations
+        public enum Operations 
         {
-            dodawnie,
+            dodawnie, //no code should be in Polish - if you need localized UI strings, find a different approach
             odejmmowanie,
             mnożenie,
             dzielenie
         }
+        //also - you have wrong operations...
+
         #endregion
         #region Metody
         /// <summary>
@@ -33,7 +37,7 @@ namespace WindowsFormsApp1
             this.A = a;
             this.B = b;
         }
-        // Pobranie zmiennej A i B
+        // Pobranie zmiennej A i B <-- redundant comment, too obvious, not needed
         public float GetA()
         {
             return this.A;
@@ -50,7 +54,9 @@ namespace WindowsFormsApp1
         /// <param name="o">Rodzaj działania</param>
         /// <param name="t">Liczba potwórzeń</param>
         /// <returns></returns>
-        public List<String> DealWithIt(float a, float b, Operations o, int t)
+        public List<String> DealWithIt(float a, float b, Operations o, int t) //questionable method name... not very bad, but almost not correct (in general - avoid 'funny' naming, especially if a clearer name exists)
+            //also - what is 't'? 
+            //do not use single letter identifiers. Nor abbreviations. Use full names which describe what the variable stands for
         {
             List<String> listResult = new List<String>();
             {
@@ -60,8 +66,8 @@ namespace WindowsFormsApp1
             for(int i = 0; i < t; i++)
             {
                 // Pętla switch przyjmująca za argumet rodziaj działania
-                // Nawiasy kwadratowe dodane dla czytelności
-                switch(o)
+                // Nawiasy kwadratowe dodane dla czytelności <-- redundant comment
+                switch(o) //what is 'o'? I forgot, I have to check... I shouldn't have to check:)
                 {
                     case Operations.dodawnie:
                         listResult.Add($"[{a}] + [{b}] = [{a + b}]\n");
