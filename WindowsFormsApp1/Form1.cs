@@ -21,8 +21,9 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
             // Pobranie typów działań do listy rozwijalnej
-            this.cbOper.DataSource = Enum.GetValues(typeof(Count.Operations));
-            // Mini instrukcja obsługi
+            this.cbOper.DataSource = Enum.GetValues(typeof(Count.Operations)); //very nice
+
+            // Mini instrukcja obsługi //+1 point for good idea:)
             this.lbResult.Items.Add("Aby rozpcząć:\n");
             this.lbResult.Items.Add("1. Kliknij \"Otwórz plik\" i wybierz plik *.xml.\n");
             this.lbResult.Items.Add("2. Wybierz działanie z listy rozwijalnej\n");
@@ -39,7 +40,7 @@ namespace WindowsFormsApp1
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtOpenFile_Click(object sender, EventArgs e)
+        private void BtOpenFile_Click(object sender, EventArgs e) //if you *have to* use abbreviations (which you shouldn't), button is by convention 'btn' not, 'bt'
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "XML|*.xml";
@@ -64,18 +65,19 @@ namespace WindowsFormsApp1
         private void BtGo_Click(object sender, EventArgs e)
         {
             // Wyczyszczenie listboxa
-            lbResult.Items.Clear();
+            lbResult.Items.Clear(); //rather than using 'hungarian notation', better call it 'resultsListBox'. Abbreviations are nasty
 
             // Pobranie liczb z pliku XML
             List<float> numbers = XmlReader.ReadXml(xmlFilePath);
 
             // Stworznie listy instancji klasy Count
             List<Count> counts = new List<Count>();
-            for(int i = 0; i < numbers.Count(); i += 2)
+            for(int i = 0; i < numbers.Count(); i += 2) //nasty, unclear, could be made much better
             {
                 counts.Add(new Count(numbers[i], numbers[i + 1]));
             }
 
+            //probably makes sense to validate *before* loading the file...
             // Sprawdzenie poprawności wprowadzonych danych
             if(Validation.IfInputIsCorrect(this.cbOper.Text, this.tbRepeats.Text, out inputOperation, out inputRepeats))
             {

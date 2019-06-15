@@ -9,10 +9,10 @@ namespace WindowsFormsApp1
     /// <summary>
     /// Sprawdzenie poprawności wprowadzonych danych
     /// </summary>
-    class Validation
+    class Validation //+1 point for extracting validation logic to separate class. 
     {
         /// <summary>
-        /// Metoda zwracająca PRAWDĘ, jeśli wprowadzono poprawne dane
+        /// Metoda zwracająca PRAWDĘ, jeśli wprowadzono poprawne dane 
         /// </summary>
         /// <param name="operationString">Rodziaj operacji jako string</param>
         /// <param name="repreatsString">Ilość powtórzeń jako string</param>
