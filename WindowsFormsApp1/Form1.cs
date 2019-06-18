@@ -20,13 +20,20 @@ namespace WindowsFormsApp1
         public Form1()
         {
             InitializeComponent();
-            // Pobranie typów działań do listy rozwijalnej
-            this.cbOper.DataSource = Enum.GetValues(typeof(Count.Operations));
-            // Mini instrukcja obsługi
-            this.lbResult.Items.Add("Aby rozpcząć:\n");
-            this.lbResult.Items.Add("1. Kliknij \"Otwórz plik\" i wybierz plik *.xml.\n");
-            this.lbResult.Items.Add("2. Wybierz działanie z listy rozwijalnej\n");
-            this.lbResult.Items.Add("3. Podaj liczbę powtórzeń działań.\n");
+            // Getting types of operations into combo box       
+
+            // this.operationsComboBox.DataSource = Enum.GetValues(typeof(Count.Operations));
+
+            foreach (Enum e in Enum.GetValues(typeof(Count.Operations)))
+            {
+                this.operationsComboBox.Items.Add(EnumUtils.StringValueOf(e));
+            }
+
+            // "Mini user guide"
+            this.resultsListBox.Items.Add("Aby rozpcząć:\n");
+            this.resultsListBox.Items.Add("1. Kliknij \"Otwórz plik\" i wybierz plik *.xml.\n");
+            this.resultsListBox.Items.Add("2. Wybierz działanie z listy rozwijalnej\n");
+            this.resultsListBox.Items.Add("3. Podaj liczbę powtórzeń działań.\n");
         }
 
         string xmlFilename;
@@ -35,63 +42,63 @@ namespace WindowsFormsApp1
         int inputRepeats;
 
         /// <summary>
-        /// Obsługa przycisku btOpenFile
+        /// Handling pressing openFileButton
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtOpenFile_Click(object sender, EventArgs e)
+        private void OpenFileButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "XML|*.xml";
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                // Przypisanie pełnej ścieżki pliku
+                // Full file path as variable
                 this.xmlFilePath = ofd.FileName;
-                // Przypisanie nazwy pliku
+                // File name as variable
                 this.xmlFilename = ofd.SafeFileName;
-                // Odblokowanie przycisku btGO
-                this.btGo.Enabled = true;
+                // OpenFileButton is set to active
+                this.countButton.Enabled = true;
             }
             this.tbFilename.Text = xmlFilename;
-            
+
         }
         /// <summary>
-        /// Obsługa przycisku btGo
+        /// Handling pressing countButton
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtGo_Click(object sender, EventArgs e)
-        {
-            // Wyczyszczenie listboxa
-            lbResult.Items.Clear();
+        private void CountButton_Click(object sender, EventArgs e)
+        {            
+            // Clearing list box
+            resultsListBox.Items.Clear();
 
-            // Pobranie liczb z pliku XML
-            List<float> numbers = XmlReader.ReadXml(xmlFilePath);
+            // Getting numbers from XML file
+            List<float[]> numbers = XmlReader.ReadXml(xmlFilePath);
 
-            // Stworznie listy instancji klasy Count
+            // Creating list of instaces of class Clunt
             List<Count> counts = new List<Count>();
-            for(int i = 0; i < numbers.Count(); i += 2)
+            for (int i = 0; i < numbers.Count(); i ++)
             {
-                counts.Add(new Count(numbers[i], numbers[i + 1]));
+                counts.Add(new Count(numbers[i].ElementAt(0), numbers[i].ElementAt(1)));
             }
 
-            // Sprawdzenie poprawności wprowadzonych danych
-            if(Validation.IfInputIsCorrect(this.cbOper.Text, this.tbRepeats.Text, out inputOperation, out inputRepeats))
+            // Filling list box 
+            if (Validation.IfInputIsCorrect(this.repeatsTextBox.Text, out inputRepeats)) 
             {
                 foreach (Count c in counts)
                 {
-                    foreach (String str in c.DealWithIt(c.GetA(), c.GetB(), inputOperation, inputRepeats))
+                    foreach (String str in c.CalucaltionsAndReturningThemAsString(c.GetA(), c.GetB(), (Count.Operations)EnumUtils.EnumValueOf(operationsComboBox.Text, typeof(Count.Operations)), inputRepeats))
                     {
-                        lbResult.Items.Add(str);
+                        resultsListBox.Items.Add(str);
                     }
                 }
-                lbResult.Items.Add("====================");
+                resultsListBox.Items.Add("====================");
             } else
             {
-                lbResult.Items.Add("Musisz podać liczbę całkowitą większą od 0.");
+                resultsListBox.Items.Add("Musisz podać liczbę całkowitą większą od 0.");
                 return;
-            }    
+            }
         }
     }
 }

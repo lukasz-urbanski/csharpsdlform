@@ -30,11 +30,11 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.tbRepeats = new System.Windows.Forms.TextBox();
-            this.btGo = new System.Windows.Forms.Button();
-            this.cbOper = new System.Windows.Forms.ComboBox();
-            this.lbResult = new System.Windows.Forms.ListBox();
-            this.btOpenFile = new System.Windows.Forms.Button();
+            this.repeatsTextBox = new System.Windows.Forms.TextBox();
+            this.countButton = new System.Windows.Forms.Button();
+            this.operationsComboBox = new System.Windows.Forms.ComboBox();
+            this.resultsListBox = new System.Windows.Forms.ListBox();
+            this.openFileButton = new System.Windows.Forms.Button();
             this.tbFilename = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
@@ -56,49 +56,49 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Powtórzenia:";
             // 
-            // tbRepeats
+            // repeatsTextBox
             // 
-            this.tbRepeats.Location = new System.Drawing.Point(258, 54);
-            this.tbRepeats.Name = "tbRepeats";
-            this.tbRepeats.Size = new System.Drawing.Size(78, 20);
-            this.tbRepeats.TabIndex = 3;
+            this.repeatsTextBox.Location = new System.Drawing.Point(258, 54);
+            this.repeatsTextBox.Name = "repeatsTextBox";
+            this.repeatsTextBox.Size = new System.Drawing.Size(78, 20);
+            this.repeatsTextBox.TabIndex = 3;
             // 
-            // btGo
+            // countButton
             // 
-            this.btGo.Enabled = false;
-            this.btGo.Location = new System.Drawing.Point(16, 86);
-            this.btGo.Name = "btGo";
-            this.btGo.Size = new System.Drawing.Size(320, 25);
-            this.btGo.TabIndex = 4;
-            this.btGo.Text = "Licz!";
-            this.btGo.UseVisualStyleBackColor = true;
-            this.btGo.Click += new System.EventHandler(this.BtGo_Click);
+            this.countButton.Enabled = false;
+            this.countButton.Location = new System.Drawing.Point(16, 86);
+            this.countButton.Name = "countButton";
+            this.countButton.Size = new System.Drawing.Size(320, 25);
+            this.countButton.TabIndex = 4;
+            this.countButton.Text = "Licz!";
+            this.countButton.UseVisualStyleBackColor = true;
+            this.countButton.Click += new System.EventHandler(this.CountButton_Click);
             // 
-            // cbOper
+            // operationsComboBox
             // 
-            this.cbOper.FormattingEnabled = true;
-            this.cbOper.Location = new System.Drawing.Point(77, 54);
-            this.cbOper.Name = "cbOper";
-            this.cbOper.Size = new System.Drawing.Size(91, 21);
-            this.cbOper.TabIndex = 6;
+            this.operationsComboBox.FormattingEnabled = true;
+            this.operationsComboBox.Location = new System.Drawing.Point(77, 54);
+            this.operationsComboBox.Name = "operationsComboBox";
+            this.operationsComboBox.Size = new System.Drawing.Size(91, 21);
+            this.operationsComboBox.TabIndex = 6;
             // 
-            // lbResult
+            // resultsListBox
             // 
-            this.lbResult.FormattingEnabled = true;
-            this.lbResult.Location = new System.Drawing.Point(16, 127);
-            this.lbResult.Name = "lbResult";
-            this.lbResult.Size = new System.Drawing.Size(320, 160);
-            this.lbResult.TabIndex = 7;
+            this.resultsListBox.FormattingEnabled = true;
+            this.resultsListBox.Location = new System.Drawing.Point(16, 127);
+            this.resultsListBox.Name = "resultsListBox";
+            this.resultsListBox.Size = new System.Drawing.Size(320, 160);
+            this.resultsListBox.TabIndex = 7;
             // 
-            // btOpenFile
+            // openFileButton
             // 
-            this.btOpenFile.Location = new System.Drawing.Point(16, 16);
-            this.btOpenFile.Name = "btOpenFile";
-            this.btOpenFile.Size = new System.Drawing.Size(152, 25);
-            this.btOpenFile.TabIndex = 8;
-            this.btOpenFile.Text = "Otwórz plik";
-            this.btOpenFile.UseVisualStyleBackColor = true;
-            this.btOpenFile.Click += new System.EventHandler(this.BtOpenFile_Click);
+            this.openFileButton.Location = new System.Drawing.Point(16, 16);
+            this.openFileButton.Name = "openFileButton";
+            this.openFileButton.Size = new System.Drawing.Size(152, 25);
+            this.openFileButton.TabIndex = 8;
+            this.openFileButton.Text = "Otwórz plik";
+            this.openFileButton.UseVisualStyleBackColor = true;
+            this.openFileButton.Click += new System.EventHandler(this.OpenFileButton_Click);
             // 
             // tbFilename
             // 
@@ -110,16 +110,16 @@
             // 
             // Form1
             // 
-            this.AcceptButton = this.btGo;
+            this.AcceptButton = this.countButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(349, 297);
             this.Controls.Add(this.tbFilename);
-            this.Controls.Add(this.btOpenFile);
-            this.Controls.Add(this.lbResult);
-            this.Controls.Add(this.cbOper);
-            this.Controls.Add(this.btGo);
-            this.Controls.Add(this.tbRepeats);
+            this.Controls.Add(this.openFileButton);
+            this.Controls.Add(this.resultsListBox);
+            this.Controls.Add(this.operationsComboBox);
+            this.Controls.Add(this.countButton);
+            this.Controls.Add(this.repeatsTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -135,11 +135,11 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox tbRepeats;
-        private System.Windows.Forms.Button btGo;
-        private System.Windows.Forms.ComboBox cbOper;
-        private System.Windows.Forms.ListBox lbResult;
-        private System.Windows.Forms.Button btOpenFile;
+        private System.Windows.Forms.TextBox repeatsTextBox;
+        private System.Windows.Forms.Button countButton;
+        private System.Windows.Forms.ComboBox operationsComboBox;
+        private System.Windows.Forms.ListBox resultsListBox;
+        private System.Windows.Forms.Button openFileButton;
         private System.Windows.Forms.TextBox tbFilename;
     }
 }

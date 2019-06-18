@@ -9,25 +9,25 @@ using System.Xml;
 namespace WindowsFormsApp1
 {
     /// <summary>
-    /// Klasa odpowiedzialna za odczyt pliku XML
+    /// This class is used to read XML file
     /// </summary>
     public static class XmlReader
     {
         /// <summary>
-        /// Pobieranie liczb z pliku XML i zapisch ich do kolekcji typu List
+        /// Getting numbers from XML file and passing them into list-type collection
         /// </summary>
-        /// <param name="filepath">Pełna ścieżka do pliku</param>
+        /// <param name="filepath">Full path file</param>
         /// <returns></returns>
-        public static List<float> ReadXml(string filepath)
+        public static List<float[]> ReadXml(string filepath)
         {            
-            List<float> resList = new List<float>();
+            List<float[]> resList = new List<float[]>();
             string contentInput;
             using (StreamReader reader = new StreamReader(filepath, Encoding.GetEncoding("ISO-8859-9")))
             {
                 contentInput = reader.ReadToEnd();
             }
 
-            // "Naprawianie" pliku XML
+            // "Fixing" XML file
             string contentFixed = contentInput.Replace("\u0084", "\"").Replace("\u0094", "\"").Replace("\u0096", "--");
 
             XmlDocument xmlDocument = new XmlDocument();
@@ -35,13 +35,15 @@ namespace WindowsFormsApp1
 
             foreach (XmlNode xmlNode in xmlDocument.DocumentElement)
             {
-                // Pętla wykonuje się, omijająć linie, które są komentarzami
+                // Skipping lines with comments
                 if (xmlNode.NodeType != XmlNodeType.Comment)
                 {
+                    float[] arrayOfFloats = new float[2];
                     string a = xmlNode.Attributes[0].InnerText;
                     string b = xmlNode.Attributes[1].InnerText;
-                    resList.Add(float.Parse(a));
-                    resList.Add(float.Parse(b));
+                    arrayOfFloats[0] = float.Parse(a);
+                    arrayOfFloats[1] = float.Parse(b);
+                    resList.Add(arrayOfFloats);
                 }
             }
             return resList;

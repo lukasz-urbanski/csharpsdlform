@@ -7,32 +7,35 @@ using System.Threading.Tasks;
 namespace WindowsFormsApp1
 {
     /// <summary>
-    /// Sprawdzenie poprawności wprowadzonych danych
+    /// Validation of data that has been inserted
     /// </summary>
     class Validation
     {
         /// <summary>
-        /// Metoda zwracająca PRAWDĘ, jeśli wprowadzono poprawne dane
+        /// Method returns true if all imputs are correct
         /// </summary>
-        /// <param name="operationString">Rodziaj operacji jako string</param>
-        /// <param name="repreatsString">Ilość powtórzeń jako string</param>
-        /// <param name="operationEnum">Poprawna operacja jako enum</param>
-        /// <param name="repeatsInt">Poprawna liczba powtórzeń jako int</param>
+        /// <param name="operationString">Operation type as string</param>
+        /// <param name="repreatsString">Number of repeats as string</param>
+        /// <param name="operationEnum">Correct operation as enum</param>
+        /// <param name="repeatsInt">Corrent nuber of repeats as integer</param>
         /// <returns></returns>
         public static bool IfInputIsCorrect(
-            string operationString, string repreatsString,
-            out Count.Operations operationEnum, out int repeatsInt)
+            // string operationString,
+            string repreatsString,
+            // out Count.Operations operationEnum,
+            out int repeatsInt)
         {
-            bool operationBool =
-                Enum.TryParse<Count.Operations>(operationString, out operationEnum);
+            //EnumUtils.EnumValueOf(operationString, typeof(Count.Operations));
+            //bool operationBool = Enum.TryParse<Count.Operations>(operationString, out operationEnum);
+            // Enum.TryParse<Count.Operations>(operationString, out operationEnum);
 
             bool repeatsBool = int.TryParse(repreatsString, out repeatsInt);
 
-            // Metoda zwraca PRAWDĘ jeśli spełnione są wszystkie te warunki:
-            // 1. Został prawdłowo wybrana rodzaj operacji.
-            // 2. Liczba powtórzeń ma wartość liczbową.
-            // 3. Liczba powtórzeń jest większa od 0.
-            return (operationBool && repeatsBool && repeatsInt > 0);
+            // Method returns true if all three conditons are passed:
+            // 1. Correct operation has been chosen.
+            // 2. Repeats are number.
+            // 3. That number is positive.
+            return (repeatsBool && repeatsInt > 0);
         }
     }
 }

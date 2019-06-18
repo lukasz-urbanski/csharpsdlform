@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,33 +8,36 @@ using System.Threading.Tasks;
 namespace WindowsFormsApp1
 {
     /// <summary>
-    /// Klasa przechowująca zmienne oraz odowiedzialna za wykonanie działań matematycznych
+    /// Class that contains variables to be calculated and operations as emuns
     /// </summary>
     class Count
     {
-        #region Zmienne
+        #region Class members
         private float A { get; set; }
         private float B { get; set; }
         public enum Operations
         {
-            dodawnie,
-            odejmmowanie,
-            mnożenie,
-            dzielenie
+            [DescriptionAttribute("Dodawanie")]
+            Addition,
+            [DescriptionAttribute("Odejmowanie")]
+            Subtraction,
+            [DescriptionAttribute("Mnożenie")]
+            Multiplication,
+            [DescriptionAttribute("Dzielenie")]
+            Division
         }
         #endregion
-        #region Metody
+        #region Methods
         /// <summary>
-        /// Konstruktor klasy Count
+        /// Count class constructor
         /// </summary>
-        /// <param name="a">Wartość zmienneh A</param>
-        /// <param name="b">Wartość zmiennej B</param>
+        /// <param name="a">Value of member A</param>
+        /// <param name="b">Value of member A</param>
         public Count(float a, float b)
         {
             this.A = a;
             this.B = b;
         }
-        // Pobranie zmiennej A i B
         public float GetA()
         {
             return this.A;
@@ -43,43 +47,42 @@ namespace WindowsFormsApp1
             return this.B;
         }
         /// <summary>
-        /// Wykonanie działań i zapisanie wyników do zmiennnej typu string
+        /// Calculation and sending results to string
         /// </summary>
-        /// <param name="a">1. liczba</param>
-        /// <param name="b">2. liczba</param>
-        /// <param name="o">Rodzaj działania</param>
-        /// <param name="t">Liczba potwórzeń</param>
+        /// <param name="numberA">#1 number</param>
+        /// <param name="numberB">#2 number</param>
+        /// <param name="operation">Type of operation</param>
+        /// <param name="repeats">Number of repetitions</param>
         /// <returns></returns>
-        public List<String> DealWithIt(float a, float b, Operations o, int t)
+        public List<String> CalucaltionsAndReturningThemAsString(float numberA, float numberB, Operations operation, int repeats)
         {
             List<String> listResult = new List<String>();
             {
                 listResult.Add("====================\n");
-                listResult.Add($"A = {a}, B = {b}, Działanie = {o}, Liczba działań = {t}\n");
+                listResult.Add($"A = {numberA}, B = {numberB}, Działanie = {EnumUtils.StringValueOf(operation)}, Liczba działań = {repeats}\n");
             }            
-            for(int i = 0; i < t; i++)
+            for(int i = 0; i < repeats; i++)
             {
-                // Pętla switch przyjmująca za argumet rodziaj działania
-                // Nawiasy kwadratowe dodane dla czytelności
-                switch(o)
+                // Switch loop with type of operations as argument used
+                switch(operation)
                 {
-                    case Operations.dodawnie:
-                        listResult.Add($"[{a}] + [{b}] = [{a + b}]\n");
-                        b = a + b;
+                    case Operations.Addition:
+                        listResult.Add($"[{numberA}] + [{numberB}] = [{numberA + numberB}]\n");
+                        numberB = numberA + numberB;
                         break;
-                    case Operations.odejmmowanie:
-                        listResult.Add($"[{a}] - [{b}] = [{a - b}]\n");
-                        b = a - b;
+                    case Operations.Subtraction:
+                        listResult.Add($"[{numberA}] - [{numberB}] = [{numberA - numberB}]\n");
+                        numberB = numberA - numberB;
                         break;
-                    case Operations.mnożenie:
-                        listResult.Add($"[{a}] * [{b}] = [{a * b}]\n");
-                        b = a * b;
+                    case Operations.Multiplication:
+                        listResult.Add($"[{numberA}] * [{numberB}] = [{numberA * numberB}]\n");
+                        numberB = numberA * numberB;
                         break;
-                    case Operations.dzielenie:
+                    case Operations.Division:
                         listResult.Add(
-                            (String.Format("{0:0.##}", a) + " / " + (String.Format("{0:0.##}", b)) +
-                            " = " + (String.Format("{0:0.##}", a / b)) + "\n"));
-                        b = a / b;
+                            (String.Format("{0:0.##}", numberA) + " / " + (String.Format("{0:0.##}", numberB)) +
+                            " = " + (String.Format("{0:0.##}", numberA / numberB)) + "\n"));
+                        numberB = numberA / numberB;
                         break;
                 }                
             }
