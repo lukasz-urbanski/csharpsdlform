@@ -76,6 +76,7 @@
             // 
             // operationsComboBox
             // 
+            this.operationsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.operationsComboBox.FormattingEnabled = true;
             this.operationsComboBox.Location = new System.Drawing.Point(77, 54);
             this.operationsComboBox.Name = "operationsComboBox";

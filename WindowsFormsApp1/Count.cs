@@ -58,7 +58,7 @@ namespace WindowsFormsApp1
         {
             List<String> listResult = new List<String>();
             {
-                listResult.Add("====================\n");
+                listResult.Add("========================================");
                 listResult.Add($"A = {numberA}, B = {numberB}, Działanie = {EnumUtils.StringValueOf(operation)}, Liczba działań = {repeats}\n");
             }            
             for(int i = 0; i < repeats; i++)

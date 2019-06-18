@@ -29,6 +29,8 @@ namespace WindowsFormsApp1
                 this.operationsComboBox.Items.Add(EnumUtils.StringValueOf(e));
             }
 
+            operationsComboBox.SelectedIndex = 0;
+
             // "Mini user guide"
             this.resultsListBox.Items.Add("Aby rozpcząć:\n");
             this.resultsListBox.Items.Add("1. Kliknij \"Otwórz plik\" i wybierz plik *.xml.\n");
@@ -38,7 +40,6 @@ namespace WindowsFormsApp1
 
         string xmlFilename;
         string xmlFilePath;
-        Count.Operations inputOperation;
         int inputRepeats;
 
         /// <summary>
@@ -73,6 +74,12 @@ namespace WindowsFormsApp1
             // Clearing list box
             resultsListBox.Items.Clear();
 
+            if(!Validation.IfInputIsCorrect(this.repeatsTextBox.Text, out inputRepeats))
+            {
+                resultsListBox.Items.Add("Musisz podać liczbę całkowitą większą od 0.");
+                return;
+            }
+
             // Getting numbers from XML file
             List<float[]> numbers = XmlReader.ReadXml(xmlFilePath);
 
@@ -83,22 +90,15 @@ namespace WindowsFormsApp1
                 counts.Add(new Count(numbers[i].ElementAt(0), numbers[i].ElementAt(1)));
             }
 
-            // Filling list box 
-            if (Validation.IfInputIsCorrect(this.repeatsTextBox.Text, out inputRepeats)) 
+            // Filling list box
+            foreach (Count c in counts)
             {
-                foreach (Count c in counts)
+                foreach (String str in c.CalucaltionsAndReturningThemAsString(c.GetA(), c.GetB(), (Count.Operations)EnumUtils.EnumValueOf(operationsComboBox.Text, typeof(Count.Operations)), inputRepeats))
                 {
-                    foreach (String str in c.CalucaltionsAndReturningThemAsString(c.GetA(), c.GetB(), (Count.Operations)EnumUtils.EnumValueOf(operationsComboBox.Text, typeof(Count.Operations)), inputRepeats))
-                    {
-                        resultsListBox.Items.Add(str);
-                    }
+                    resultsListBox.Items.Add(str);                    
                 }
-                resultsListBox.Items.Add("====================");
-            } else
-            {
-                resultsListBox.Items.Add("Musisz podać liczbę całkowitą większą od 0.");
-                return;
             }
+            resultsListBox.Items.Add("========================================");
         }
     }
 }
