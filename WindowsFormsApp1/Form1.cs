@@ -17,6 +17,7 @@ namespace WindowsFormsApp1
     /// </summary>
     public partial class Form1 : Form
     {
+        Log log = new Log();
         public Form1()
         {
             InitializeComponent();
@@ -80,7 +81,10 @@ namespace WindowsFormsApp1
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void CountButton_Click(object sender, EventArgs e)
-        {            
+        {
+            
+
+            this.log.SaveLogFile(this.tbErrorLog.Text, (Log.ErrorLogType)EnumUtils.EnumValueOf(errorlogcomboBox.SelectedItem.ToString(), typeof(Log.ErrorLogType)), "ahjsfhvsjdf");
             // Clearing list box
             resultsListBox.Items.Clear();
 

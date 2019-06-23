@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel;
+using System.IO;
+using System.Xml.Linq;
+
 namespace WindowsFormsApp1
 {
     class Log
@@ -19,7 +18,7 @@ namespace WindowsFormsApp1
             [DescriptionAttribute("XML")]
             XML
         }
-        private void SaveLogFile(string path, Log.ErrorLogType type, string message)
+        public void SaveLogFile(string path, Log.ErrorLogType type, string message)
         {
             switch (type)
             {
@@ -33,6 +32,7 @@ namespace WindowsFormsApp1
                     WriteSimpleFormat(path, ConvertMessage(message, type));
                     break;
                 case Log.ErrorLogType.XML:
+                    WriteXmlFile(path, message);
                     break;
 
             }
@@ -45,7 +45,7 @@ namespace WindowsFormsApp1
                     return DateTime.Now.ToString() + " " + message;
                     break;
                 case Log.ErrorLogType.CSV:
-                    return "\""+ AddQuotes(DateTime.Now.ToString()) + "\",\"" + AddQuotes(message) + "\"";
+                    return "\"" + AddQuotes(DateTime.Now.ToString()) + "\",\"" + AddQuotes(message) + "\"";
                     break;
                 case Log.ErrorLogType.TSV:
                     return "\"" + AddQuotes(DateTime.Now.ToString()) + "\"\t\"" + AddQuotes(message) + "\"";
@@ -59,7 +59,7 @@ namespace WindowsFormsApp1
         private string AddQuotes(string messages)
         {
             return messages.Replace("\"", "\"\"");
-            
+
         }
         private void WriteSimpleFormat(string path, string message)
         {
@@ -68,6 +68,29 @@ namespace WindowsFormsApp1
             {
                 logfile.WriteLine(message);
             }
+        }
+        private void WriteXmlFile(string path, string message)
+        {
+            XDocument doc;
+            XElement entry;
+            if (File.Exists(path))
+            {
+                doc = XDocument.Load(path);
+
+
+            }
+            else
+            {
+                doc = new XDocument(new XElement("errorlog"));
+
+                //doc.Save(path);
+            }
+            entry = doc.Element("errorlog");
+            entry.Add(new XElement("entry",
+            new XElement("date", DateTime.Now.ToString()),
+            new XElement("message", message)));
+            doc.Save(path);
+
         }
     }
 }
