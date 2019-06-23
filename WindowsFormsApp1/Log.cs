@@ -20,22 +20,31 @@ namespace WindowsFormsApp1
         }
         public void SaveLogFile(string path, Log.ErrorLogType type, string message)
         {
-            switch (type)
+            try
             {
-                case Log.ErrorLogType.TXT:
-                    WriteSimpleFormat(path, ConvertMessage(message, type));
-                    break;
-                case Log.ErrorLogType.CSV:
-                    WriteSimpleFormat(path, ConvertMessage(message, type));
-                    break;
-                case Log.ErrorLogType.TSV:
-                    WriteSimpleFormat(path, ConvertMessage(message, type));
-                    break;
-                case Log.ErrorLogType.XML:
-                    WriteXmlFile(path, message);
-                    break;
+                switch (type)
+                {
+                    case Log.ErrorLogType.TXT:
+
+                        WriteSimpleFormat(path, ConvertMessage(message, type));
+                        break;
+                    case Log.ErrorLogType.CSV:
+                        WriteSimpleFormat(path, ConvertMessage(message, type));
+                        break;
+                    case Log.ErrorLogType.TSV:
+                        WriteSimpleFormat(path, ConvertMessage(message, type));
+                        break;
+                    case Log.ErrorLogType.XML:
+                        WriteXmlFile(path, message);
+                        break;
+
+                }
+            }
+            catch(Exception)
+            {
 
             }
+            
         }
         private string ConvertMessage(string message, Log.ErrorLogType type)
         {

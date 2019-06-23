@@ -71,8 +71,19 @@ namespace WindowsFormsApp1
                 this.countButton.Enabled = true;
             }
             this.tbFilename.Text = xmlFilename;
-            this.tbErrorLog.Text = Path.Combine(foldername, "log."+ errorlogcomboBox.Text);
+            this.tbErrorLog.Text = Path.Combine(foldername, "log."+ errorlogcomboBox.SelectedItem.ToString());
+        }
+        private void Browse_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    this.tbErrorLog.Text = Path.Combine(fbd.SelectedPath, "log." + errorlogcomboBox.SelectedItem.ToString());
+                }
 
+            }
 
         }
         /// <summary>
@@ -83,14 +94,18 @@ namespace WindowsFormsApp1
         private void CountButton_Click(object sender, EventArgs e)
         {
             
-
-            this.log.SaveLogFile(this.tbErrorLog.Text, (Log.ErrorLogType)EnumUtils.EnumValueOf(errorlogcomboBox.SelectedItem.ToString(), typeof(Log.ErrorLogType)), "ahjsfhvsjdf");
+            
+            
             // Clearing list box
             resultsListBox.Items.Clear();
 
             if(!Validation.IfInputIsCorrect(this.repeatsTextBox.Text, out inputRepeats))
             {
-                resultsListBox.Items.Add("Musisz podać liczbę całkowitą większą od 0.");
+                string message = "Musisz podać liczbę całkowitą większą od 0.";
+                resultsListBox.Items.Add(message);
+                message = "Ilość operacji. " + message;
+                this.log.SaveLogFile(this.tbErrorLog.Text, (Log.ErrorLogType)EnumUtils.EnumValueOf(errorlogcomboBox.SelectedItem.ToString(), typeof(Log.ErrorLogType)), message);
+                
                 return;
             }
 
@@ -101,7 +116,9 @@ namespace WindowsFormsApp1
             List<Count> counts = new List<Count>();
             for (int i = 0; i < numbers.Count(); i ++)
             {
-                counts.Add(new Count(numbers[i].ElementAt(0), numbers[i].ElementAt(1))); //error event, a co jezeli atrybut B bedzie jako pierwszy?
+                counts.Add(new Count(numbers[i].ElementAt(0), numbers[i].ElementAt(1)));
+                
+
             }
 
             // Filling list box
@@ -117,7 +134,9 @@ namespace WindowsFormsApp1
 
         private void errorlogcomboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            this.tbErrorLog.Text = Path.Combine(foldername, "log."+ errorlogcomboBox.SelectedItem);
+            this.tbErrorLog.Text = Path.Combine(Path.GetDirectoryName(this.tbErrorLog.Text), "log."+ errorlogcomboBox.SelectedItem);
         }
+
+
     }
 }

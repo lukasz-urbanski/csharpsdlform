@@ -38,6 +38,7 @@
             this.tbFilename = new System.Windows.Forms.TextBox();
             this.errorlogcomboBox = new System.Windows.Forms.ComboBox();
             this.tbErrorLog = new System.Windows.Forms.TextBox();
+            this.BrowseErrorLog = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -63,7 +64,7 @@
             // repeatsTextBox
             // 
             this.repeatsTextBox.Location = new System.Drawing.Point(344, 66);
-            this.repeatsTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.repeatsTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.repeatsTextBox.Name = "repeatsTextBox";
             this.repeatsTextBox.Size = new System.Drawing.Size(103, 22);
             this.repeatsTextBox.TabIndex = 3;
@@ -72,7 +73,7 @@
             // 
             this.countButton.Enabled = false;
             this.countButton.Location = new System.Drawing.Point(21, 106);
-            this.countButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.countButton.Margin = new System.Windows.Forms.Padding(4);
             this.countButton.Name = "countButton";
             this.countButton.Size = new System.Drawing.Size(427, 31);
             this.countButton.TabIndex = 4;
@@ -85,7 +86,7 @@
             this.operationsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.operationsComboBox.FormattingEnabled = true;
             this.operationsComboBox.Location = new System.Drawing.Point(103, 66);
-            this.operationsComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.operationsComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.operationsComboBox.Name = "operationsComboBox";
             this.operationsComboBox.Size = new System.Drawing.Size(120, 24);
             this.operationsComboBox.TabIndex = 6;
@@ -95,7 +96,7 @@
             this.resultsListBox.FormattingEnabled = true;
             this.resultsListBox.ItemHeight = 16;
             this.resultsListBox.Location = new System.Drawing.Point(21, 156);
-            this.resultsListBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.resultsListBox.Margin = new System.Windows.Forms.Padding(4);
             this.resultsListBox.Name = "resultsListBox";
             this.resultsListBox.Size = new System.Drawing.Size(425, 196);
             this.resultsListBox.TabIndex = 7;
@@ -103,7 +104,7 @@
             // openFileButton
             // 
             this.openFileButton.Location = new System.Drawing.Point(21, 20);
-            this.openFileButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.openFileButton.Margin = new System.Windows.Forms.Padding(4);
             this.openFileButton.Name = "openFileButton";
             this.openFileButton.Size = new System.Drawing.Size(203, 31);
             this.openFileButton.TabIndex = 8;
@@ -114,7 +115,7 @@
             // tbFilename
             // 
             this.tbFilename.Location = new System.Drawing.Point(245, 23);
-            this.tbFilename.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbFilename.Margin = new System.Windows.Forms.Padding(4);
             this.tbFilename.Name = "tbFilename";
             this.tbFilename.ReadOnly = true;
             this.tbFilename.Size = new System.Drawing.Size(201, 22);
@@ -131,10 +132,21 @@
             // 
             // tbErrorLog
             // 
+            this.tbErrorLog.Enabled = false;
             this.tbErrorLog.Location = new System.Drawing.Point(476, 65);
             this.tbErrorLog.Name = "tbErrorLog";
             this.tbErrorLog.Size = new System.Drawing.Size(293, 22);
             this.tbErrorLog.TabIndex = 11;
+            // 
+            // BrowseErrorLog
+            // 
+            this.BrowseErrorLog.Location = new System.Drawing.Point(658, 101);
+            this.BrowseErrorLog.Name = "BrowseErrorLog";
+            this.BrowseErrorLog.Size = new System.Drawing.Size(110, 35);
+            this.BrowseErrorLog.TabIndex = 12;
+            this.BrowseErrorLog.Text = "Browse";
+            this.BrowseErrorLog.UseVisualStyleBackColor = true;
+            this.BrowseErrorLog.Click += new System.EventHandler(this.Browse_Click);
             // 
             // Form1
             // 
@@ -142,6 +154,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(783, 366);
+            this.Controls.Add(this.BrowseErrorLog);
             this.Controls.Add(this.tbErrorLog);
             this.Controls.Add(this.errorlogcomboBox);
             this.Controls.Add(this.tbFilename);
@@ -153,7 +166,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "XML Reader";
@@ -174,6 +187,7 @@
         private System.Windows.Forms.TextBox tbFilename;
         private System.Windows.Forms.ComboBox errorlogcomboBox;
         private System.Windows.Forms.TextBox tbErrorLog;
+        private System.Windows.Forms.Button BrowseErrorLog;
     }
 }
 
