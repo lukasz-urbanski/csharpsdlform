@@ -31,6 +31,12 @@ namespace WindowsFormsApp1
 
             operationsComboBox.SelectedIndex = 0;
 
+            foreach (Enum e in Enum.GetValues(typeof(Log.ErrorLogType)))
+            {
+                this.errorlogcomboBox.Items.Add(EnumUtils.StringValueOf(e));
+            }
+            errorlogcomboBox.SelectedIndex = 0;
+
             // "Mini user guide"
             this.resultsListBox.Items.Add("Aby rozpcząć:\n");
             this.resultsListBox.Items.Add("1. Kliknij \"Otwórz plik\" i wybierz plik *.xml.\n");
@@ -40,6 +46,7 @@ namespace WindowsFormsApp1
 
         string xmlFilename;
         string xmlFilePath;
+        string foldername="";
         int inputRepeats;
 
         /// <summary>
@@ -58,10 +65,13 @@ namespace WindowsFormsApp1
                 this.xmlFilePath = ofd.FileName;
                 // File name as variable
                 this.xmlFilename = ofd.SafeFileName;
+                this.foldername = Path.GetDirectoryName(xmlFilePath);
                 // OpenFileButton is set to active
                 this.countButton.Enabled = true;
             }
             this.tbFilename.Text = xmlFilename;
+            this.tbErrorLog.Text = Path.Combine(foldername, "log."+ errorlogcomboBox.Text);
+
 
         }
         /// <summary>
@@ -99,6 +109,11 @@ namespace WindowsFormsApp1
                 }
             }
             resultsListBox.Items.Add("========================================");
+        }
+
+        private void errorlogcomboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            this.tbErrorLog.Text = Path.Combine(foldername, "log."+ errorlogcomboBox.SelectedItem);
         }
     }
 }

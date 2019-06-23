@@ -36,7 +36,8 @@
             this.resultsListBox = new System.Windows.Forms.ListBox();
             this.openFileButton = new System.Windows.Forms.Button();
             this.tbFilename = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.errorlogcomboBox = new System.Windows.Forms.ComboBox();
+            this.tbErrorLog = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -119,13 +120,21 @@
             this.tbFilename.Size = new System.Drawing.Size(201, 22);
             this.tbFilename.TabIndex = 9;
             // 
-            // comboBox1
+            // errorlogcomboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(476, 26);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(132, 24);
-            this.comboBox1.TabIndex = 10;
+            this.errorlogcomboBox.FormattingEnabled = true;
+            this.errorlogcomboBox.Location = new System.Drawing.Point(476, 21);
+            this.errorlogcomboBox.Name = "errorlogcomboBox";
+            this.errorlogcomboBox.Size = new System.Drawing.Size(132, 24);
+            this.errorlogcomboBox.TabIndex = 10;
+            this.errorlogcomboBox.SelectionChangeCommitted += new System.EventHandler(this.errorlogcomboBox_SelectionChangeCommitted);
+            // 
+            // tbErrorLog
+            // 
+            this.tbErrorLog.Location = new System.Drawing.Point(476, 65);
+            this.tbErrorLog.Name = "tbErrorLog";
+            this.tbErrorLog.Size = new System.Drawing.Size(293, 22);
+            this.tbErrorLog.TabIndex = 11;
             // 
             // Form1
             // 
@@ -133,7 +142,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(783, 366);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.tbErrorLog);
+            this.Controls.Add(this.errorlogcomboBox);
             this.Controls.Add(this.tbFilename);
             this.Controls.Add(this.openFileButton);
             this.Controls.Add(this.resultsListBox);
@@ -162,7 +172,8 @@
         private System.Windows.Forms.ListBox resultsListBox;
         private System.Windows.Forms.Button openFileButton;
         private System.Windows.Forms.TextBox tbFilename;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox errorlogcomboBox;
+        private System.Windows.Forms.TextBox tbErrorLog;
     }
 }
 
