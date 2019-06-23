@@ -87,7 +87,7 @@ namespace WindowsFormsApp1
             List<Count> counts = new List<Count>();
             for (int i = 0; i < numbers.Count(); i ++)
             {
-                counts.Add(new Count(numbers[i].ElementAt(0), numbers[i].ElementAt(1)));
+                counts.Add(new Count(numbers[i].ElementAt(0), numbers[i].ElementAt(1))); //error event, a co jezeli atrybut B bedzie jako pierwszy?
             }
 
             // Filling list box

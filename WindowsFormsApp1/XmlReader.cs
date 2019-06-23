@@ -41,8 +41,8 @@ namespace WindowsFormsApp1
                     float[] arrayOfFloats = new float[2];
                     string a = xmlNode.Attributes[0].InnerText;
                     string b = xmlNode.Attributes[1].InnerText;
-                    arrayOfFloats[0] = float.Parse(a);
-                    arrayOfFloats[1] = float.Parse(b);
+                    arrayOfFloats[0] = float.Parse(a); // error event
+                    arrayOfFloats[1] = float.Parse(b); //error event
                     resList.Add(arrayOfFloats);
                 }
             }

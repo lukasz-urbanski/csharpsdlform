@@ -24,7 +24,11 @@ namespace WindowsFormsApp1
             [DescriptionAttribute("Mnożenie")]
             Multiplication,
             [DescriptionAttribute("Dzielenie")]
-            Division
+            Division,
+            [DescriptionAttribute("Potęgowanie")]
+            exponentiation,
+            [DescriptionAttribute("Modulo")]
+            modulo
         }
         #endregion
         #region Methods
@@ -83,6 +87,16 @@ namespace WindowsFormsApp1
                             (String.Format("{0:0.##}", numberA) + " / " + (String.Format("{0:0.##}", numberB)) +
                             " = " + (String.Format("{0:0.##}", numberA / numberB)) + "\n"));
                         numberB = numberA / numberB;
+                        break;
+                    case Operations.exponentiation:
+                        listResult.Add($"[{numberA}] ^ [{numberB}] = [{Math.Pow(System.Convert.ToDouble(numberA), Convert.ToDouble(numberB))}]\n");
+                        numberB = Convert.ToSingle(Math.Pow(System.Convert.ToDouble(numberA), Convert.ToDouble(numberB)));
+                        break;
+
+
+                    case Operations.modulo:
+                        listResult.Add($"[{numberA}] % [{numberB}] = [{numberA % numberB}]\n");
+                        numberB = numberA % numberB;
                         break;
                 }                
             }
