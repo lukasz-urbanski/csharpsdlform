@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -130,11 +131,22 @@ namespace WindowsFormsApp1
                 }
             }
             resultsListBox.Items.Add("========================================");
+            if (MessageBox.Show("Do you want to opent log file?", "Question", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                Process.Start(this.tbErrorLog.Text);
+            }
+            
+
+
         }
 
         private void errorlogcomboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            this.tbErrorLog.Text = Path.Combine(Path.GetDirectoryName(this.tbErrorLog.Text), "log."+ errorlogcomboBox.SelectedItem);
+            if (this.tbErrorLog.Text.Length > 0)
+            {
+                this.tbErrorLog.Text = Path.Combine(Path.GetDirectoryName(this.tbErrorLog.Text), "log." + errorlogcomboBox.SelectedItem);
+            }
+            
         }
 
 
