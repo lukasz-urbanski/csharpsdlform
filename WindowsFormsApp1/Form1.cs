@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace WindowsFormsApp1
     /// </summary>
     public partial class Form1 : Form
     {
+        Log log = new Log();
         public Form1()
         {
             InitializeComponent();
@@ -31,6 +33,12 @@ namespace WindowsFormsApp1
 
             operationsComboBox.SelectedIndex = 0;
 
+            foreach (Enum e in Enum.GetValues(typeof(Log.ErrorLogType)))
+            {
+                this.errorlogcomboBox.Items.Add(EnumUtils.StringValueOf(e));
+            }
+            errorlogcomboBox.SelectedIndex = 0;
+
             // "Mini user guide"
             this.resultsListBox.Items.Add("Aby rozpcząć:\n");
             this.resultsListBox.Items.Add("1. Kliknij \"Otwórz plik\" i wybierz plik *.xml.\n");
@@ -40,6 +48,7 @@ namespace WindowsFormsApp1
 
         string xmlFilename;
         string xmlFilePath;
+        string foldername="";
         int inputRepeats;
 
         /// <summary>
@@ -58,10 +67,24 @@ namespace WindowsFormsApp1
                 this.xmlFilePath = ofd.FileName;
                 // File name as variable
                 this.xmlFilename = ofd.SafeFileName;
+                this.foldername = Path.GetDirectoryName(xmlFilePath);
                 // OpenFileButton is set to active
                 this.countButton.Enabled = true;
             }
             this.tbFilename.Text = xmlFilename;
+            this.tbErrorLog.Text = Path.Combine(foldername, "log."+ errorlogcomboBox.SelectedItem.ToString());
+        }
+        private void Browse_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    this.tbErrorLog.Text = Path.Combine(fbd.SelectedPath, "log." + errorlogcomboBox.SelectedItem.ToString());
+                }
+
+            }
 
         }
         /// <summary>
@@ -70,13 +93,20 @@ namespace WindowsFormsApp1
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void CountButton_Click(object sender, EventArgs e)
-        {            
+        {
+            
+            
+            
             // Clearing list box
             resultsListBox.Items.Clear();
 
             if(!Validation.IfInputIsCorrect(this.repeatsTextBox.Text, out inputRepeats))
             {
-                resultsListBox.Items.Add("Musisz podać liczbę całkowitą większą od 0.");
+                string message = "Musisz podać liczbę całkowitą większą od 0.";
+                resultsListBox.Items.Add(message);
+                message = "Ilość operacji. " + message;
+                this.log.SaveLogFile(this.tbErrorLog.Text, (Log.ErrorLogType)EnumUtils.EnumValueOf(errorlogcomboBox.SelectedItem.ToString(), typeof(Log.ErrorLogType)), message);
+                
                 return;
             }
 
@@ -88,6 +118,8 @@ namespace WindowsFormsApp1
             for (int i = 0; i < numbers.Count(); i ++)
             {
                 counts.Add(new Count(numbers[i].ElementAt(0), numbers[i].ElementAt(1)));
+                
+
             }
 
             // Filling list box
@@ -99,6 +131,24 @@ namespace WindowsFormsApp1
                 }
             }
             resultsListBox.Items.Add("========================================");
+            if (MessageBox.Show("Do you want to opent log file?", "Question", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                Process.Start(this.tbErrorLog.Text);
+            }
+            
+
+
         }
+
+        private void errorlogcomboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (this.tbErrorLog.Text.Length > 0)
+            {
+                this.tbErrorLog.Text = Path.Combine(Path.GetDirectoryName(this.tbErrorLog.Text), "log." + errorlogcomboBox.SelectedItem);
+            }
+            
+        }
+
+
     }
 }
